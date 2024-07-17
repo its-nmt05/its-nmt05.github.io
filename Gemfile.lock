@@ -229,7 +229,7 @@ DEPENDENCIES
   jekyll-twitter-plugin
   jemoji
   unicode_utils
-  wdm (>= 0.1.0)
+  wdm
   webrick
 
 BUNDLED WITH
