@@ -21,6 +21,10 @@
       href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@300;400&display=swap"
       rel="stylesheet"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
@@ -50,34 +54,70 @@
               <a class="nav-link" href="cv.html">CV</a>
             </li>
           </ul>
+          <button
+            id="themeToggle"
+            class="btn btn-outline-primary theme-toggle"
+          >
+            <i class="fas fa-sun"></i>
+          </button>
         </div>
-        <button id="themeToggle" class="btn btn-outline-primary ms-3">
-          Toggle Theme
-        </button>
       </div>
     </nav>
 
     <div class="container mt-5">
       <section id="cv" class="animate__animated animate__fadeIn">
-        <h2 class="display-4 mb-5">Curriculum Vitae</h2>
+        <div class="mb-5">
+          <h2 class="display-4">Curriculum Vitae</h2>
+          <p class="lead">Here are some of my past experiences</p>
+        </div>
         <div class="timeline">
-          <div class="timeline-item left">
+          <div class="timeline-item">
             <div class="content">
-              <h3>2022 - Present</h3>
-              <p>Current Position or Education</p>
+                <div class="content-wrapper">
+                    <img src="./assets/images/buildspace-logo.jpeg" alt="Description" class="timeline-image">
+                    <div class="text-content">
+                        <h3>Jun, 2024 - Aug, 2024</h3>
+                        <h4 class="description">Builder @n&w</h4>
+                        <p>Buildspace, SF, California</p>
+                    </div>
+                </div>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="content">
+                <div class="content-wrapper">
+                    <img src="./assets/images/cyberheathens-logo.webp" alt="Description" class="timeline-image">
+                    <div class="text-content">
+                        <h3>Sep, 2023 - Apr, 2024</h3>
+                        <h4 class="description">Comitee Member</h4>
+                        <p>CyberHeathens | Programming Club | IISERB</p>
+                    </div>
+                </div>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="content">
+                <div class="content-wrapper">
+                    <img src="./assets/images/iiser-logo.png" alt="Description" class="timeline-image">
+                    <div class="text-content">
+                        <h3>2023 - Present</h3>
+                        <h4 class="description">BS computer science (3.5 GPA)</h4>
+                        <p>Indian Institute of Science Education and Reserach</p>
+                    </div>
+                </div>
             </div>
           </div>
           <!-- Repeat for other timeline items -->
         </div>
         <div class="text-center mt-5">
-          <a href="#" class="btn btn-primary">Download Full Resume</a>
+          <a href="https://drive.google.com/file/d/1qwnyQiHiNNFTTRMRyHPyNmP2e_hHXNu4/view?usp=drive_link" target="_blank" class="btn btn-primary">Download Full Resume</a>
         </div>
       </section>
     </div>
 
-    <footer class="text-center text-lg-start mt-5">
-      <div class="container p-4">
-        <p>&copy; 2024 Your Name. All rights reserved.</p>
+    <footer class="mt-5">
+      <div class="d-flex align-items-center justify-content-center" style="height: 40px;">
+        <p class="mb-0"><small>&copy; Copyright 2024 Nirmalya Mallick Thakur.<small></p>
       </div>
     </footer>
 
