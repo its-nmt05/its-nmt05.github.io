@@ -1,81 +1,54 @@
 ---
 layout: page
-title: project 1
-description: with background image
-img: assets/img/12.jpg
+title: Encodec
+description: Neural audio codec based on Meta AI's Encodec Model
+img: assets/img/encodec_framework.png
 importance: 1
 category: work
-related_publications: true
+related_publications: false
 ---
 
-Every project has a beautiful feature showcase page.
-It's easy to include images in a flexible 3-column grid format.
-Make your photos 1/3, 2/3, or full width.
+This is a code implementation of the ["High Fidelity Neural Audio Compression"](https://arxiv.org/abs/2210.13438) paper by Meta AI. For more details visit: [Github](https://github.com/its-nmt05/Encodec/)
 
-To give your project a background in the portfolio page, just add the img tag to the front matter like so:
+### Introduction
 
-    ---
-    layout: page
-    title: project
-    description: a project with a background image
-    img: /assets/img/12.jpg
-    ---
+This project aims to reproduce the Encodec model architecture as per the paper. The core model consists of a convolution based encoder-decoder network with an additional residual vector quantizer (RVQ) in between for furthur compression of the latent embeddings into discrete codes.
 
-<div class="row">
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/1.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/3.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/5.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-</div>
-<div class="caption">
-    Caption photos easily. On the left, a road goes through a tunnel. Middle, leaves artistically fall in a hipster photoshoot. Right, in another hipster photoshoot, a lumberjack grasps a handful of pine needles.
-</div>
-<div class="row">
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/5.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-</div>
-<div class="caption">
-    This image can also have a caption. It's like magic.
-</div>
+{% include figure.liquid loading="eager" path="assets/img/encodec_architecture.png" title="architecture" class="img-fluid rounded z-depth-1" %}
 
-You can also put regular text between your rows of images, even citations {% cite einstein1950meaning %}.
-Say you wanted to write a bit about your project before you posted the rest of the images.
-You describe how you toiled, sweated, _bled_ for your project, and then... you reveal its glory in the next row of images.
+A `MS-STFT Discriminator` is furthur used to enhance the output audio quality by training it using adversarial losses.
 
-<div class="row justify-content-sm-center">
-    <div class="col-sm-8 mt-3 mt-md-0">
-        {% include figure.liquid path="assets/img/6.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-    <div class="col-sm-4 mt-3 mt-md-0">
-        {% include figure.liquid path="assets/img/11.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-</div>
-<div class="caption">
-    You can also have artistically styled 2/3 + 1/3 images, like these.
-</div>
+The entire model is trained on multiple loss components including reconstruction loss, perceptual loss and discriminator losses. The loss terms are scaled with coefficients to balance the loss between the terms:
 
-The code is simple.
-Just wrap your images with `<div class="col-sm">` and place them inside `<div class="row">` (read more about the <a href="https://getbootstrap.com/docs/4.4/layout/grid/">Bootstrap Grid</a> system).
-To make images responsive, add `img-fluid` class to each; for rounded corners and shadows use `rounded` and `z-depth-1` classes.
-Here's the code for the last row of images above:
+$$
+L_G = \lambda_t \cdot \ell_t(x, \hat{x}) + \lambda_f \cdot \ell_f(x, \hat{x}) + \lambda_g \cdot \ell_g(\hat{x}) + \lambda_{feat} \cdot \ell_{feat}(x, \hat{x}) + \lambda_w \cdot \ell_w(w)
+$$
 
-{% raw %}
+- `l_g` - adversarial loss for the generator
+- `l_feat` - relative feature matching loss for the generator.
+- `l_w` - commitment loss for the RVQ
+- `l_f` - linear combination of L1 and L2 losses across freq. domain on a mel scale 
+- `l_t` - L1 loss across time domian
 
-```html
-<div class="row justify-content-sm-center">
-  <div class="col-sm-8 mt-3 mt-md-0">
-    {% include figure.liquid path="assets/img/6.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-  </div>
-  <div class="col-sm-4 mt-3 mt-md-0">
-    {% include figure.liquid path="assets/img/11.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-  </div>
-</div>
+$L_G$ is the overall loss for the generator.
+
+### Training 
+
+The entire model was trained on the [LibriSpeech ASR corpus](https://www.openslr.org/12) developement dataset with the following hyperparamters:
+
+```py
+num_epochs = 50
+batch_size = 2
+sample_rate = 24000
+learning_rate = 0.001
+target_bandwidths=[1.5, 3, 6, 12, 24]
+norm = 'weight_norm'
+causal = False
 ```
 
-{% endraw %}
+### References
+
+1. [High Fidelity Neural Audio Compression](https://arxiv.org/abs/2210.13438)
+2. [Encodec codebase by Meta](https://github.com/facebookresearch/encodec)
+3. [Encodec pytorch](https://github.com/ZhikangNiu/encodec-pytorch)
+4. [Encodec Trainer](https://github.com/Mikxox/EnCodec_Trainer)
