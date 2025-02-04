@@ -10,14 +10,7 @@ category: work
 Welcome to Sim3D! This is the successor to Sim2D which was written in Java and Processing.
 This engine is designed to simulate particles in a 3D environment using OpenGL and C++. It allows for particle collision and movement, and includes a scene editor for setting up simulation parameters.
 
-<div class="row">
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/sim3d_two.png" title="image" class="img-fluid rounded z-depth-1" %}
-    </div>
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/sim3d_three.png" title="image" class="img-fluid rounded z-depth-1" %}
-    </div>
-</div>
+{% include video.liquid path="assets/video/sim3d_demo.mp4" class="img-fluid rounded z-depth-1" controls=true autoplay=true %}
 
 ### Project Overview
 

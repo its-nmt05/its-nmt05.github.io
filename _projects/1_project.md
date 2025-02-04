@@ -12,11 +12,11 @@ This is a code implementation of the ["High Fidelity Neural Audio Compression"](
 
 ### Introduction
 
-This project aims to reproduce the Encodec model architecture as per the paper. The core model consists of a convolution based encoder-decoder network with an additional residual vector quantizer (RVQ) in between for furthur compression of the latent embeddings into discrete codes.
+This project aims to reproduce the Encodec model architecture as per the paper. The core model consists of a convolution based encoder-decoder network with an additional residual vector quantizer (RVQ) in between for further compression of the latent embeddings into discrete codes.
 
 {% include figure.liquid loading="eager" path="assets/img/encodec_architecture.png" title="architecture" class="img-fluid rounded z-depth-1" %}
 
-A `MS-STFT Discriminator` is furthur used to enhance the output audio quality by training it using adversarial losses.
+A `MS-STFT Discriminator` is further used to enhance the output audio quality by training it using adversarial losses.
 
 The entire model is trained on multiple loss components including reconstruction loss, perceptual loss and discriminator losses. The loss terms are scaled with coefficients to balance the loss between the terms:
 
@@ -41,7 +41,7 @@ num_epochs = 50
 batch_size = 2
 sample_rate = 24000
 learning_rate = 0.001
-target_bandwidths=[1.5, 3, 6, 12, 24]
+target_bandwidths = [1.5, 3, 6, 12, 24]
 norm = 'weight_norm'
 causal = False
 ```
