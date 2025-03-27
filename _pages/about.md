@@ -28,4 +28,6 @@ I am passionate in working with generative models such as `Transformers` and `Ne
 
 My previous work involves studying neural audio codecs. I implemeneted Meta AI's _ENCODEC_ model from the ["High Fidelity Neural Audio Compression"](https://arxiv.org/abs/2210.13438) paper. I have also worked on a U-net based diffusion model based on the ["Denoising Diffusion Probabilistic Models" (DDPM)](https://arxiv.org/abs/2006.11239) paper. Additionaly, I created [Sim3D](https://github.com/anm-ol/sim3d), which is a 3D physics engine written entirely from scratch in C++ on OpenGL for particle and cloth simulation.
 
-I am actively looking for summer research opportunities to work on architectural improvments of generative models in speech and language.
+<!-- I am actively looking for summer research opportunities to work on architectural improvments of generative models in speech and language. -->
+
+I am currently working on semantic analysis of Neural Audio Codecs (NACs) at the [Speech and Language Laboratory](https://aseschng.github.io/SpeechLab.html), NTU under [Prof. Chng Eng Siong](https://dr.ntu.edu.sg/cris/rp/rp00098).
