@@ -30,4 +30,4 @@ My previous work involves studying neural audio codecs. I implemeneted Meta AI's
 
 <!-- I am actively looking for summer research opportunities to work on architectural improvments of generative models in speech and language. -->
 
-I am currently working on semantic analysis of Neural Audio Codecs (NACs) at the [Speech and Language Laboratory](https://aseschng.github.io/SpeechLab.html), NTU under [Prof. Chng Eng Siong](https://dr.ntu.edu.sg/cris/rp/rp00098).
+I am currently working on semantic analysis of Neural Audio Codecs (NACs) at the [Speech and Language L aboratory, NTU](https://aseschng.github.io/SpeechLab.html) under [Prof. Chng Eng Siong](https://dr.ntu.edu.sg/cris/rp/rp00098).
