@@ -6,7 +6,7 @@ subtitle: <b>Bachelor's in Computer Science at <a href='https://www.iiserb.ac.in
 
 profile:
   align: right
-  image: prof_pic.jpg
+  image: prof_pic3.jpg
   image_circular: false # crops the image to make it circular
   more_info: >
 
@@ -24,10 +24,12 @@ latest_posts:
   limit: 3 # leave blank to include all the blog posts
 ---
 
-I am passionate in working with generative models such as `Transformers` and `Neural Speech Models` and their applications in `NLP`. I have also briefly worked on generative computer vision through my work on U-net diffusion models. I also enjoy working on computer graphics and simulation problems.
+I am passionate about working with generative models such as `World models` and `Diffusion models`. Looking at the current surge of research on world models, I am keen to explore their applications in various fields. I also enjoy working on `computer graphics` and `simulation problems`.
 
-My previous work involves studying neural audio codecs. I implemeneted Meta AI's _ENCODEC_ model from the ["High Fidelity Neural Audio Compression"](https://arxiv.org/abs/2210.13438) paper. I have also worked on a U-net based diffusion model based on the ["Denoising Diffusion Probabilistic Models" (DDPM)](https://arxiv.org/abs/2006.11239) paper. Additionaly, I created [Sim3D](https://github.com/anm-ol/sim3d), which is a 3D physics engine written entirely from scratch in C++ on OpenGL for particle and cloth simulation.
+I have expereince in working with generative models from the ground up. I implemented a varational autoencoder (VAE) from scratch inspired by [SD-VAE](https://github.com/CompVis/stable-diffusion) and trained it on extracted frames from Minecraft gameplay. I also trained a 608 M param Diffusion Transformer (DiT) model on the latent representations from the VAE for high fidelity Minecraft scene generations [[Link]](https://github.com/its-nmt05/DiffuseNet). I have also worked on a U-net based diffusion model based on the ["Denoising Diffusion Probabilistic Models" (DDPM)](https://arxiv.org/abs/2006.11239) paper. Additionaly, I created [Sim3D](https://github.com/anm-ol/sim3d), which is a 3D physics engine written entirely from scratch in C++ on OpenGL for particle and cloth simulation.
+
+I have previously interned at [Speech and Language Lab, NTU](https://aseschng.github.io/SpeechLab.html) under [Prof. Chng Eng Siong](https://dr.ntu.edu.sg/cris/rp/rp00098) and also at [LEAP Lab, IISc Bangalore](http://leap.ee.iisc.ac.in/) on various audio and speech models.
+
+<!-- My previous work involves working on diffusion models. I implemeneted a DiT based generative model   Meta AI's _ENCODEC_ model from the ["High Fidelity Neural Audio Compression"](https://arxiv.org/abs/2210.13438) paper. I have also worked on a U-net based diffusion model based on the ["Denoising Diffusion Probabilistic Models" (DDPM)](https://arxiv.org/abs/2006.11239) paper. Additionaly, I created [Sim3D](https://github.com/anm-ol/sim3d), which is a 3D physics engine written entirely from scratch in C++ on OpenGL for particle and cloth simulation. -->
 
 <!-- I am actively looking for summer research opportunities to work on architectural improvments of generative models in speech and language. -->
-
-I am currently working on semantic analysis of Neural Audio Codecs (NACs) at the [Speech and Language L aboratory, NTU](https://aseschng.github.io/SpeechLab.html) under [Prof. Chng Eng Siong](https://dr.ntu.edu.sg/cris/rp/rp00098).

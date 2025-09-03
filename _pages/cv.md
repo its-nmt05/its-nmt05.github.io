@@ -4,7 +4,7 @@ permalink: /cv/
 title: CV
 nav: true
 nav_order: 5
-cv_pdf: Nirmalya_resume.pdf # you can also use external links here
+cv_pdf: Nirmalya_resume2.pdf # you can also use external links here
 description: >
 toc:
   sidebar: left

@@ -1,54 +1,65 @@
 ---
 layout: page
-title: Encodec
-description: Neural audio codec based on Meta AI's Encodec Model
-img: assets/img/encodec_framework.png
+title: DiffuseNet
+description: Collection of generative models trained from scratch including DDPM, DiT, VAE for learning and research
+img: assets/img/mnist.png
 importance: 1
 category: work
-related_publications: false
 ---
 
-This is a code implementation of the ["High Fidelity Neural Audio Compression"](https://arxiv.org/abs/2210.13438) paper by Meta AI. For more details visit: [Github](https://github.com/its-nmt05/Encodec/)
+I have trained a number of generative models from scratch on PyTorch and trained them on server-grade hardware. In the process, I conducted an exhaustive literature survey of state-of-the-art papers for the related models. All the code is available on [Github](https://github.com/its-nmt05/DiffuseNet). You can also check out the [project report](https://drive.google.com/file/d/1jRF91PUQ4Mh-WL9JIbqucw2O9aVNMUZC/view?usp=sharing).
 
-### Introduction
+### Variation Autoencoder (VAE)
+Implemented a VAE from scratch inspired by [SD-VAE](https://github.com/CompVis/stable-diffusion). It was trained on both MNIST and Minecraft images. The model uses a convolutional autoencoder with upsampling and downsampling blocks along with residual attention layers. 
 
-This project aims to reproduce the Encodec model architecture as per the paper. The core model consists of a convolution based encoder-decoder network with an additional residual vector quantizer (RVQ) in between for further compression of the latent embeddings into discrete codes.
+Training was performed using `adversarial loss`, `KLD loss` and `LPIPS` loss using a pretrained `vgg16` network.
 
-{% include figure.liquid loading="eager" path="assets/img/encodec_architecture.png" title="architecture" class="img-fluid rounded z-depth-1" %}
+#### Interpolations
 
-A `MS-STFT Discriminator` is further used to enhance the output audio quality by training it using adversarial losses.
+<figure>
+    <div class="row">
+    <div class="col-sm">
+        {% include figure.liquid path="assets/img/minecraft_interpolate.gif" title="Minecraft interpolation" class="img-fluid rounded z-depth-1" %}
+    </div>
+    <div class="col-sm">
+        {% include figure.liquid path="assets/img/mnist_interpolate.gif" title="MNIST interpolation" class="img-fluid rounded z-depth-1"%}
+    </div>
+    </div>
+    <figcaption class="text-center mb-2">Linear interpolations between two latents</figcaption>
+</figure>
 
-The entire model is trained on multiple loss components including reconstruction loss, perceptual loss and discriminator losses. The loss terms are scaled with coefficients to balance the loss between the terms:
+#### Reconstructions
+The VAE was trained on `256x256` Minecraft images and outputs latents of dim `64x8x8`, with a `48x` compression.
+{% include figure.liquid path="assets/img/vae_recon.png" title="VAE reconstruction" class="img-fluid rounded z-depth-1" %}
 
-$$
-L_G = \lambda_t \cdot \ell_t(x, \hat{x}) + \lambda_f \cdot \ell_f(x, \hat{x}) + \lambda_g \cdot \ell_g(\hat{x}) + \lambda_{feat} \cdot \ell_{feat}(x, \hat{x}) + \lambda_w \cdot \ell_w(w)
-$$
+### Diffusion Transformer (DiT)
+Implementation of Diffusion Transformer inspired by the original [DiT paper](https://arxiv.org/abs/2212.09748). The model uses transformer blocks with timesteps conditioned through `adaLN` Tested both small (76 M) and large (608 M) variants on the Minecraft dataset using our pre-trained VAE. All the models were trained on an NVIDIA A100.
 
-- `l_g` - adversarial loss for the generator
-- `l_feat` - relative feature matching loss for the generator.
-- `l_w` - commitment loss for the RVQ
-- `l_f` - linear combination of L1 and L2 losses across freq. domain on a mel scale 
-- `l_t` - L1 loss across time domian
+<figure>
+    <div class="row">
+    <div class="col-sm">
+        {% include figure.liquid path="assets/img/dit_samples_minecraft.png" title="Minecraft generations" class="img-fluid rounded z-depth-1" %}
+    </div>
+    <div class="col-sm">
+        {% include figure.liquid path="assets/img/dit_samples_pokemon.png" title="Pokemon generations" class="img-fluid rounded z-depth-1" %}
+    </div>
+    </div>
+    <figcaption class="text-center mb-2">Generated Minecraft (left) and Pokemon (right) images by DiT-large model from noise</figcaption>
+</figure>
 
-$L_G$ is the overall loss for the generator.
+### DDPM Generations
 
-### Training 
+<figure>
+    <div class="row">
+    <div class="col-sm">
+        {% include figure.liquid path="assets/img/mnist.png" title="MNIST generations" class="img-fluid rounded z-depth-1" %}
+    </div>
+    <div class="col-sm">
+        {% include figure.liquid path="assets/img/cifar_perceptual.png" title="CIFAR-10 generations" class="img-fluid rounded z-depth-1" %}
+    </div>
+    </div>
+    <figcaption class="text-center mb-2">U-Net generations on MNIST (left) and CIFAR-10 (right)</figcaption>
+</figure>
 
-The entire model was trained on the [LibriSpeech ASR corpus](https://www.openslr.org/12) developement dataset with the following hyperparamters:
-
-```py
-num_epochs = 50
-batch_size = 2
-sample_rate = 24000
-learning_rate = 0.001
-target_bandwidths = [1.5, 3, 6, 12, 24]
-norm = 'weight_norm'
-causal = False
-```
-
-### References
-
-1. [High Fidelity Neural Audio Compression](https://arxiv.org/abs/2210.13438)
-2. [Encodec codebase by Meta](https://github.com/facebookresearch/encodec)
-3. [Encodec pytorch](https://github.com/ZhikangNiu/encodec-pytorch)
-4. [Encodec Trainer](https://github.com/Mikxox/EnCodec_Trainer)
+#### Timestep Sampling (T=500)
+{% include figure.liquid path="assets/img/sampling.png" title="Timestep sampling" class="img-fluid rounded z-depth-1" %}
