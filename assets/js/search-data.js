@@ -386,16 +386,21 @@ ninja.data = [{
             },},{id: "news-a-simple-inline-announcement-with-markdown-emoji-sparkles-smile",
           title: 'A simple inline announcement with Markdown emoji! :sparkles: :smile:',
           description: "",
-          section: "News",},{id: "projects-encodec",
-          title: 'Encodec',
-          description: "Neural audio codec based on Meta AI&#39;s Encodec Model",
+          section: "News",},{id: "projects-diffusenet",
+          title: 'DiffuseNet',
+          description: "Collection of generative models trained from scratch including DDPM, DiT, VAE for learning and research",
           section: "Projects",handler: () => {
               window.location.href = "/projects/1_project/";
             },},{id: "projects-sim3d",
           title: 'Sim3D',
           description: "A 3D physics engine written entirely from scratch in C++ using OpenGL for particle and cloth simulation",
           section: "Projects",handler: () => {
-              window.location.href = "/projects/4_project/";
+              window.location.href = "/projects/2_project/";
+            },},{id: "projects-encodec",
+          title: 'Encodec',
+          description: "Neural audio codec based on Meta AI&#39;s Encodec Model",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/3_project/";
             },},{
       id: 'light-theme',
       title: 'Change theme to light',
